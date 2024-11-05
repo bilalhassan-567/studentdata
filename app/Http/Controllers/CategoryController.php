@@ -55,17 +55,45 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
-    {
-        return view('studentdata.edit');    }
+public function edit($id) // Accepting the student ID
+{
+    // Retrieve the student record using the Category model
+    $studentdata = Category::findOrFail($id); // Use Category model
+    return view('studentdata.edit', compact('studentdata')); // Pass the student data to the view
+}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Category $category)
-    {
-        //
-    }
+/**
+ * Update the specified resource in storage.
+ */
+public function update(Request $request, Category $category)
+{
+    // Validate the incoming request data
+    $request->validate([
+        'student_name' => 'required|string|max:255',
+        'student_email' => 'required|email|max:255|unique:studentdata,student_email,' . $category->id, // Exclude current email
+        'date_of_birth' => 'required|date',
+        'gender' => 'required|in:male,female,other',
+        'enrollment_number' => 'required|string|max:50|unique:studentdata,enrollment_number,' . $category->id, // Exclude current enrollment number
+        'course' => 'required|string|max:255',
+        'enrollment_date' => 'required|date',
+    ]);
+
+    // Update the student record
+    $category->update([
+        'student_name' => $request->input('student_name'),
+        'student_email' => $request->input('student_email'), // Update to the new email
+        'date_of_birth' => $request->input('date_of_birth'),
+        'gender' => $request->input('gender'),
+        'enrollment_number' => $request->input('enrollment_number'), // Update to the new enrollment number
+        'course' => $request->input('course'),
+        'enrollment_date' => $request->input('enrollment_date'),
+    ]);
+
+    return redirect('/studentdata')->with('success', 'Student data updated successfully!');    
+}
+
+
+
 
     /**
      * Remove the specified resource from storage.

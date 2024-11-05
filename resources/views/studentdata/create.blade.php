@@ -6,8 +6,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4> Student list
-                        <a href="{{url('studentdata/create')  }}" class="btn btn-primary float-end">Add Student data</a>
+                    <h4> Add Student Data
+                        <a href="{{url('studentdata')  }}" class="btn btn-danger float-end">Back</a>
                     </h4>
                 </div>
                 <div class="card-body">
