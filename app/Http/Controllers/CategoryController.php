@@ -12,7 +12,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('studentdata.index');
+        $studentdata= Category::paginate(10);
+        return view('studentdata.index', [
+            'studentdata' => $studentdata
+        ]);
    }
 
     /**
@@ -27,7 +30,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'student_name' => 'required|string|max:255',
+            'student_email' => 'required|email|unique:studentdata,student_email|max:255',
+            'date_of_birth' => 'required|date',
+            'gender' => 'required|in:male,female,other',
+            'enrollment_number' => 'required|string|max:50|unique:studentdata,enrollment_number',
+            'course' => 'required|string|max:255',
+            'enrollment_date' => 'required|date',
+        ]);
+
+        Category::create($request->all());
+
+        return redirect('/studentdata')->with('Student data Saved Sucessfully');
     }
 
     /**

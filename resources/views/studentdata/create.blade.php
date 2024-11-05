@@ -7,11 +7,13 @@
             <div class="card">
                 <div class="card-header">
                     <h4> Student list
-                        <a href="{{url('studentdata/create')  }}" class="btn btn-primary float-end">Add Student data............</a>
+                        <a href="{{url('studentdata/create')  }}" class="btn btn-primary float-end">Add Student data</a>
                     </h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{url(studentdata)}}" method="POST">
+                    <form action="{{route('studentdata.store')}}" method="POST">
+                        @csrf @csrf
+
 
                         <div class="mb-3">
                             <label for="student_name">Student Name</label>

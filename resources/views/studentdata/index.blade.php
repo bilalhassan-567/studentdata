@@ -24,15 +24,22 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($studentdata as $studentdata)
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $studentdata->student_name  }}</td>
+                                <td>{{ $studentdata->student_email  }}</td>
+                                <td>{{ $studentdata->date_of_birth  }}</td>
+                                <td>{{ $studentdata->gender }}</td>
+                                <td>{{ $studentdata->enrollment_number  }}</td>
+                                <td>{{ $studentdata->course }}</td>
+                                <td>{{ $studentdata->enrollment_date  }}</td>
+                                <td>
+                                    <a href="{{route('studentdata.edit', $studentdata->id )}}" class="btn btn-success">Edit</a>
+                                    <a href="{{route('studentdata.show', $studentdata->id)}}" class="btn btn-info">Show</a>
+                                   {{-- <a href="{{route(studentdata.destroy)}}" class="btn btn-danger">Delete</a>--}}
+                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
