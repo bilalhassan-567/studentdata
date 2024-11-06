@@ -89,10 +89,6 @@ public function update(Request $request, $id)
     return redirect('/studentdata')->with('success', 'Student data updated successfully!');
 }
 
-
-
-
-
     /**
      * Remove the specified resource from storage.
      */
