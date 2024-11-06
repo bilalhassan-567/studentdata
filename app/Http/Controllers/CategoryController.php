@@ -49,9 +49,11 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show($id)
     {
-        return view('studentdata.show');    }
+        $studentdata = Category::findOrFail($id);
+        return view('studentdata.show', compact('studentdata'));
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -93,8 +95,10 @@ public function update(Request $request, $id)
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        $studentdata = Category::findOrFail($id);
+        $studentdata->delete();
+        return redirect()->route('studentdata.index')->with('success', 'Student record deleted successfully.');
     }
 }
