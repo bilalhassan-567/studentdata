@@ -42,7 +42,8 @@ class CategoryController extends Controller
 
         Category::create($request->all());
 
-        return redirect('/studentdata')->with('Student data Saved Sucessfully');
+        return redirect('/studentdata')->with('success', 'Student data Saved successfully!');
+
     }
 
     /**

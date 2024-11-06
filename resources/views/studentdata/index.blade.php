@@ -4,6 +4,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            
+            @session('success')
+            
+            <div class="alert alert-success">
+                {{session('success')}}
+            </div>
+            
+            @endsession
             <div class="card">
                 <div class="card-header">
                     <h4> Student list
