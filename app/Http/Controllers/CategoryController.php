@@ -12,11 +12,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $studentdata= Category::paginate(10);
-        return view('studentdata.index', [
-            'studentdata' => $studentdata
-        ]);
-   }
+        $studentdata = Category::paginate(1);
+        return view('studentdata.index', compact('studentdata'));
+    }
 
     /**
      * Show the form for creating a new resource.

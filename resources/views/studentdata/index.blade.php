@@ -32,29 +32,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($studentdata as $studentdata)
-                            <tr>
-                                <td>{{ $studentdata->student_name  }}</td>
-                                <td>{{ $studentdata->student_email  }}</td>
-                                <td>{{ $studentdata->date_of_birth  }}</td>
-                                <td>{{ $studentdata->gender }}</td>
-                                <td>{{ $studentdata->enrollment_number  }}</td>
-                                <td>{{ $studentdata->course }}</td>
-                                <td>{{ $studentdata->enrollment_date  }}</td>
-                                <td>
-                                    <a href="{{route('studentdata.edit', $studentdata->id )}}" class="btn btn-success">Edit</a>
-                                    <a href="{{route('studentdata.show', $studentdata->id)}}" class="btn btn-info">Show</a>
+                            @foreach ($studentdata as $student)
+<tr>
+    <td>{{ $student->student_name }}</td>
+    <td>{{ $student->student_email }}</td>
+    <td>{{ $student->date_of_birth }}</td>
+    <td>{{ $student->gender }}</td>
+    <td>{{ $student->enrollment_number }}</td>
+    <td>{{ $student->course }}</td>
+    <td>{{ $student->enrollment_date }}</td>
+    <td>
+        <a href="{{route('studentdata.edit', $student->id )}}" class="btn btn-success">Edit</a>
+        <a href="{{route('studentdata.show', $student->id)}}" class="btn btn-info">Show</a>
 
-                                    <form action="{{route('studentdata.destroy', $studentdata->id)}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
-                                 </td>
-                            </tr>
-                            @endforeach
+        <form action="{{route('studentdata.destroy', $student->id)}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </td>
+</tr>
+@endforeach
                         </tbody>
                     </table>
+
+                    {{$studentdata->links()}}
                 </div>
             </div>
         </div>
