@@ -10,12 +10,13 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
+               <!-- Custom link to student data page -->
+<div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+    <x-nav-link href="http://127.0.0.1:8000/studentdata" :active="request()->is('studentdata')">
+        {{ __('Dashboard') }}
+    </x-nav-link>
+</div>
+
             </div>
 
             <!-- Settings Dropdown -->
